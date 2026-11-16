@@ -1,0 +1,204 @@
+:root {
+    --bg: #fdf7f4;
+    --surface: #ffffff;
+    --ink: #2b1b2e;
+    --ink-soft: #6b5870;
+    --primary: #7b2d5e;
+    --primary-soft: #b85c8f;
+    --accent: #d4a24c;
+    --border: #ecdcd8;
+
+    --badge-nail-bg: #f3dbe8;
+    --badge-nail-ink: #7b2d5e;
+    --badge-hair-bg: #e7ddf5;
+    --badge-hair-ink: #5a3a8a;
+    --badge-skin-bg: #fbe7cf;
+    --badge-skin-ink: #8a5a1f;
+
+    --radius: 20px;
+    --shadow: 0 10px 30px rgba(90, 40, 80, 0.08);
+    --shadow-hover: 0 18px 40px rgba(90, 40, 80, 0.16);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+.page-header {
+    background: linear-gradient(135deg, #7b2d5e 0%, #a83d7a 60%, #c76b9c 100%);
+    color: #fff;
+    padding: 64px 24px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::after {
+    content: "";
+    position: absolute;
+    inset: auto -60px -80px auto;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(212, 162, 76, 0.25);
+    filter: blur(10px);
+}
+
+.page-header__inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+
+.page-header__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.page-header__subtitle {
+    margin-top: 12px;
+    font-size: 1.05rem;
+    opacity: 0.85;
+}
+
+.page-content {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+}
+
+.procedure-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+    margin-top: -40px;
+}
+
+.procedure-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid var(--border);
+}
+
+.procedure-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+.procedure-card__photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, #f3dbe8, #fbe7cf);
+    overflow: hidden;
+}
+
+.procedure-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.procedure-card:hover .procedure-card__photo img { transform: scale(1.06); }
+
+.procedure-card__photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary);
+    opacity: 0.35;
+}
+
+.procedure-card__badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+}
+
+.badge--nail { background: var(--badge-nail-bg); color: var(--badge-nail-ink); }
+.badge--hair { background: var(--badge-hair-bg); color: var(--badge-hair-ink); }
+.badge--skin { background: var(--badge-skin-bg); color: var(--badge-skin-ink); }
+
+.procedure-card__body {
+    padding: 22px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.procedure-card__name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.procedure-card__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    margin-top: auto;
+}
+
+.procedure-card__meta-item dt {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+}
+
+.procedure-card__meta-item dd {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.procedure-card__price { color: var(--primary); font-size: 1.1rem; }
+
+.procedure-card__button {
+    display: inline-block;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.procedure-card__button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+.empty-state {
+    text-align: center;
+    margin-top: 60px;
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+}

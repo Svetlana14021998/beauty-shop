@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Процедуры — Салон красоты</title>
+    <link rel="stylesheet" th:href="@{/css/procedures.css}">
+</head>
+<body>
+
+<header class="page-header">
+    <div class="page-header__inner">
+        <h1 class="page-header__title">Наши процедуры</h1>
+        <p class="page-header__subtitle">Выберите то, что подчеркнёт вашу красоту</p>
+    </div>
+</header>
+
+<main class="page-content">
+    <section class="procedure-grid">
+
+        <article class="procedure-card" th:each="procedure : ${procedures}">
+
+            <div class="procedure-card__photo">
+                <img th:if="${procedure.photoName != null and !procedure.photoName.isEmpty()}"
+                     th:src="@{${procedure.photoName}}"
+                     th:alt="${procedure.procedureName}">
+                <div th:if="${procedure.photoName == null or procedure.photoName.isEmpty()}"
+                     class="procedure-card__photo-placeholder">
+                    <span th:text="${#strings.substring(procedure.procedureName, 0, 1)}">A</span>
+                </div>
+                <span class="procedure-card__badge"
+                      th:text="${procedure.procedureType.name}"
+                      th:classappend="'badge--' + ${#strings.toLowerCase(procedure.procedureType.name())}">
+                    Ногти
+                </span>
+            </div>
+
+            <div class="procedure-card__body">
+                <h2 class="procedure-card__name" th:text="${procedure.procedureName}">Маникюр</h2>
+
+                <dl class="procedure-card__meta">
+                    <div class="procedure-card__meta-item">
+                        <dt>Длительность</dt>
+                        <dd th:text="${procedure.duration}">1 час 30 минут</dd>
+                    </div>
+                    <div class="procedure-card__meta-item">
+                        <dt>Цена</dt>
+                        <dd class="procedure-card__price" th:text="${procedure.price} + ' ₽'">2 500 ₽</dd>
+                    </div>
+                </dl>
+            </div>
+
+        </article>
+
+    </section>
+
+    <p class="empty-state" th:if="${#lists.isEmpty(procedures)}">
+        Пока нет доступных процедур.
+    </p>
+</main>
+
+</body>
+</html>
