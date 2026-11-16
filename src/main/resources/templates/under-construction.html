@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>В разработке — Салон красоты</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/under-construction.css}">
+</head>
+<body>
+
+<header class="page-header">
+    <div class="page-header__inner">
+        <h1 class="page-header__title">Страница в разработке</h1>
+        <p class="page-header__subtitle">Мы уже работаем над этим разделом</p>
+    </div>
+</header>
+
+<main class="page-content">
+    <section class="construction">
+        <div class="construction__icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="96" height="96" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="12" stroke="currentColor" stroke-width="4"/>
+                <path d="M32 8v8M32 48v8M8 32h8M48 32h8M15 15l6 6M43 43l6 6M49 15l-6 6M21 43l-6 6"
+                      stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <h2 class="construction__title">Скоро здесь будет красиво</h2>
+        <p class="construction__text">
+            Этот раздел ещё готовится. Мы вкладываем в него столько же заботы,
+            сколько в каждую нашу процедуру. Загляните чуть позже!
+        </p>
+
+        <a th:href="@{/procedures}" class="btn">Перейти к процедурам</a>
+    </section>
+</main>
+
+</body>
+</html>
